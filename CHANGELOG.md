@@ -6,8 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 - Multiple fixes for styles and docs.
+- Implement "not allowed" word list.
+- Write guide for extension.
 
-## [0.1.0] - 2022-02-03
+## [0.1.0] - 2022-02-02
 ### Added
 - Initial development code.
 - Initial documentation.

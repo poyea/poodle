@@ -25,7 +25,7 @@ $ poodle log
 $ poodle -h
 poodle 0.1.0
 John Law <poyea@pm.me>
-Word-guessing game from your terminal 🟩🟩🟩🟩🟩
+Word-guessing game from your terminal 🟩⬛🟩🟨🟩
 
 USAGE:
     poodle <CMD>
@@ -37,7 +37,6 @@ OPTIONS:
     -h, --help       Print help information
     -V, --version    Print version information
 ```
-
 
 ## Building poodle
 ```sh

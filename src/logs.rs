@@ -44,7 +44,7 @@ impl Logs {
 impl fmt::Display for Logs {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         for pair in &self.data {
-            write!(f, "{}{}\n", pair.date, pair.dump);
+            write!(f, "{}\n", pair.dump);
         }
         write!(f, "Last attempted: {}\n", self.last_attempted);
         Ok(())

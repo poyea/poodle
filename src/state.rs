@@ -94,7 +94,15 @@ impl DayState {
         Attempt { slots: res }
     }
 
-    pub fn validate_input(guess: &String) -> bool {
+    pub fn input_allowed(guess: &String, allowed: &Vec<String>) -> bool {
+        if let Ok(_) = allowed.binary_search_by(|p| p.cmp(&guess)) {
+            true
+        } else {
+            false
+        }
+    }
+
+    pub fn input_hygiene(guess: &String) -> bool {
         return guess.len() == 5 && guess.chars().all(char::is_alphabetic);
     }
 

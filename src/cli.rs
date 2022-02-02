@@ -7,7 +7,7 @@ use std::io::Write;
 
 /// Not a 🐩, but a word-guessing game from your terminal 🟩⬛🟩🟨🟩
 #[derive(Debug, Parser)]
-#[clap(author = "John Law <poyea@pm.me>")]
+#[clap(author)]
 #[clap(version)]
 #[clap(long_about = None)]
 pub struct Cli {
@@ -23,7 +23,9 @@ pub enum Instruction {
 }
 
 fn start(today: String) {
-    let ws: Words = get_words();
+    let ws = get_words();
+    let allowed = get_allowed();
+
     let today_word = ws.data[&today].to_string();
     let mut today_state = DayState::new(today_word);
 
@@ -38,14 +40,18 @@ fn start(today: String) {
             stdin.read_line(&mut buffer).unwrap();
             buffer = buffer.trim().to_string();
         }
-        if DayState::validate_input(&buffer) {
-            let attempt_fmt = today_state.guess(buffer);
-            {
-                print!("\t\t{}", attempt_fmt);
-                io::stdout().flush().unwrap();
-            }
-            if today_state.finished() {
-                break 'game;
+        if DayState::input_hygiene(&buffer) {
+            if DayState::input_allowed(&buffer, &allowed) {
+                let attempt_fmt = today_state.guess(buffer);
+                {
+                    print!("\t\t{}", attempt_fmt);
+                    io::stdout().flush().unwrap();
+                }
+                if today_state.finished() {
+                    break 'game;
+                }
+            } else {
+                println!("Unallowed word ← {}", buffer);
             }
         } else {
             println!("Invalid input  ← {}", buffer);
