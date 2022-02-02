@@ -6,7 +6,7 @@ static WORDS: &'static str = include_str!("./assets/words.json");
 
 type Dict = HashMap<String, String>;
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Words {
     #[serde(flatten)]
     pub data: Dict,

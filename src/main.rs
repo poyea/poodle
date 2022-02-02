@@ -5,9 +5,6 @@ mod data;
 mod day;
 mod logs;
 
-use crate::day::DayState;
-
 fn main() {
-    let today = DayState::get_today();
-    cli::exec(today);
+    cli::exec(day::DayState::get_today());
 }

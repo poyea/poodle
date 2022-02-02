@@ -6,7 +6,7 @@ use std::io;
 use std::io::Write;
 
 /// Word-guessing game from your terminal 🟩🟩🟩🟩🟩
-#[derive(Parser, Debug)]
+#[derive(Debug, Parser)]
 #[clap(author = "John Law <poyea@pm.me>")]
 #[clap(version)]
 #[clap(long_about = None)]
@@ -16,7 +16,7 @@ pub struct Cli {
     cmd: Instruction,
 }
 
-#[derive(clap::ArgEnum, Clone, Debug)]
+#[derive(Debug, clap::ArgEnum, Clone)]
 pub enum Instruction {
     Start,
     Log,
