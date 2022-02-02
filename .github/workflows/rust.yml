@@ -26,7 +26,7 @@ jobs:
     - name: Build
       run: cargo build --verbose --all --release
     - name: Tar files
-      run: tar -cvf ${{ matrix.os }}_build.tar target/release/poodle
+      run: tar -cvf ${{ matrix.os }}_build.tar -C target/release poodle
     - name: Archive release binary
       uses: actions/upload-artifact@v2
       with:
@@ -35,7 +35,11 @@ jobs:
           ${{ matrix.os }}_build.tar
         retention-days: 2
   release_build_windows:
-    runs-on: windows-latest
+    name: release_build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
     steps:
     - uses: actions/checkout@v2
     - name: Build
