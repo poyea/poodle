@@ -1,4 +1,4 @@
-# poodle
+# poodle [![Rust](https://github.com/poyea/poodle/actions/workflows/rust.yml/badge.svg)](https://github.com/poyea/poodle/actions/workflows/rust.yml)
 Word-guessing game from your terminal 🟩🟨🟩🟨🟩.
 
 ## Features
