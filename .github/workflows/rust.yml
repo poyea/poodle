@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run tests
       run: cargo test --verbose --all --release
-  archive_release_builds:
+  release_build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
