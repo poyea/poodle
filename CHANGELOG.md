@@ -6,10 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.0] - 2022-02-02
+## [0.1.0] - 2022-02-03
 ### Added
 - Initial development code.
 - Initial documentation.
 - Project structure.
+- Enable GitHub Actions.
 
 [Unreleased]: https://github.com/poyea/poodle/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/poyea/poodle/releases/tag/v0.1.0
