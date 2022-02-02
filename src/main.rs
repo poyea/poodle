@@ -2,9 +2,9 @@
 
 mod cli;
 mod data;
-mod day;
 mod logs;
+mod state;
 
 fn main() {
-    cli::exec(day::DayState::get_today());
+    cli::exec(state::DayState::get_today());
 }

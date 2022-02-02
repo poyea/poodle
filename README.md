@@ -1,5 +1,5 @@
 # poodle [![Rust](https://github.com/poyea/poodle/actions/workflows/rust.yml/badge.svg)](https://github.com/poyea/poodle/actions/workflows/rust.yml)
-Word-guessing game from your terminal 🟩🟨🟩🟨🟩.
+Not a 🐩 (poodle), but a word-guessing game from your terminal 🟩⬛🟩🟨🟩
 
 ## Features
 * ✅ In Rust 🦀
@@ -28,7 +28,7 @@ John Law <poyea@pm.me>
 Word-guessing game from your terminal 🟩🟩🟩🟩🟩
 
 USAGE:
-    poodle.exe <CMD>
+    poodle <CMD>
 
 ARGS:
     <CMD>    Instruction [possible values: start, log]

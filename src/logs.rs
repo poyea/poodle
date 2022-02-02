@@ -1,4 +1,4 @@
-use crate::day::DayState;
+use crate::state::DayState;
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Result};
 use std::collections::HashMap;

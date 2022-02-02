@@ -125,10 +125,10 @@ impl DayState {
 impl fmt::Display for DayState {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "\n<>==========<>\n");
+        write!(f, "poodle {} {}/6\n", self.date, 6 - self.remaining);
         for attempt in &self.stat.attempts {
             write!(f, "{}", attempt);
         }
-        write!(f, "\t{}/6\n", 6 - self.remaining);
         write!(f, "<>==========<>\n");
         Ok(())
     }

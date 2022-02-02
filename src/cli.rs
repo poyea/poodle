@@ -1,11 +1,11 @@
 use crate::data::*;
-use crate::day::*;
 use crate::logs::*;
+use crate::state::*;
 use clap::Parser;
 use std::io;
 use std::io::Write;
 
-/// Word-guessing game from your terminal 🟩🟩🟩🟩🟩
+/// Not a 🐩, but a word-guessing game from your terminal 🟩⬛🟩🟨🟩
 #[derive(Debug, Parser)]
 #[clap(author = "John Law <poyea@pm.me>")]
 #[clap(version)]
