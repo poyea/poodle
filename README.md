@@ -1,5 +1,5 @@
-# poodle [![Rust](https://github.com/poyea/poodle/actions/workflows/rust.yml/badge.svg)](https://github.com/poyea/poodle/actions/workflows/rust.yml)
-Not a 🐩 (poodle), but a word-guessing game from your terminal 🟩⬛🟩🟨🟩
+# Poodle [![Rust](https://github.com/poyea/poodle/actions/workflows/rust.yml/badge.svg)](https://github.com/poyea/poodle/actions/workflows/rust.yml)
+Not a 🐩 (Poodle), but a word-guessing game from your terminal 🟩⬛🟩🟨🟩
 
 ## Features
 * ✅ In Rust 🦀
@@ -25,7 +25,7 @@ $ poodle log
 $ poodle -h
 poodle 0.1.0
 John Law <poyea@pm.me>
-Word-guessing game from your terminal 🟩⬛🟩🟨🟩
+Not a 🐩 (Poodle), but a word-guessing game from your terminal 🟩⬛🟩🟨🟩
 
 USAGE:
     poodle <CMD>
@@ -54,4 +54,4 @@ $ cargo doc --all --release   # documentation
 * Contribute
 
 ## License
-This repository is licensed under MIT. See also [LICENSE](LICENSE) for details. **Wordle** is developed by Josh Wardle. The original game can be accessed [here](https://www.powerlanguage.co.uk/wordle/).
+This repository is licensed under MIT. See also [LICENSE](LICENSE) for details. The idea of Poodle is inspired by **Wordle**. **Wordle** is developed by Josh Wardle. The original game can be accessed [here](https://www.powerlanguage.co.uk/wordle/).

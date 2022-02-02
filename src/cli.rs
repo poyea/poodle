@@ -5,7 +5,7 @@ use clap::Parser;
 use std::io;
 use std::io::Write;
 
-/// Not a 🐩, but a word-guessing game from your terminal 🟩⬛🟩🟨🟩
+/// Not a 🐩 (Poodle), but a word-guessing game from your terminal 🟩⬛🟩🟨🟩
 #[derive(Debug, Parser)]
 #[clap(author)]
 #[clap(version)]
