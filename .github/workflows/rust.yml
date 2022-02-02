@@ -20,18 +20,30 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [macos-latest, ubuntu-latest]
     steps:
     - uses: actions/checkout@v2
     - name: Build
       run: cargo build --verbose --all --release
     - name: Tar files
-      run: tar -cvf ${{ matrix.os }}_build.tar `ls target/release/poodle target/release/poodle.exe`
+      run: tar -cvf ${{ matrix.os }}_build.tar target/release/poodle
     - name: Archive release binary
       uses: actions/upload-artifact@v2
       with:
         name: build
         path: |
-          target/release/poodle
+          ${{ matrix.os }}_build.tar
+        retention-days: 2
+  release_build_windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: cargo build --verbose --all --release
+    - name: Archive release binary
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: |
           target/release/poodle.exe
-        retention-days: 3
+        retention-days: 2
