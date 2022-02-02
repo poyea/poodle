@@ -1,0 +1,4 @@
+/target
+
+logs.json
+!src/assets/logs.json
