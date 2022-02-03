@@ -38,7 +38,7 @@ OPTIONS:
     -V, --version    Print version information
 ```
 
-## Building poodle
+## Building Poodle
 ```sh
 $ cargo -V
 cargo 1.56.0 (4ed5d137b 2021-10-04)
@@ -54,4 +54,4 @@ $ cargo doc --all --release   # documentation
 * Contribute
 
 ## License
-This repository is licensed under MIT. See also [LICENSE](LICENSE) for details. The idea of Poodle is inspired by **Wordle**. **Wordle** is developed by Josh Wardle. The original game can be accessed [here](https://www.powerlanguage.co.uk/wordle/).
+This repository is licensed under MIT. See also [LICENSE](LICENSE) for details. Poodle is inspired by **Wordle**. **Wordle** is developed by Josh Wardle. The original game can be accessed [here](https://www.powerlanguage.co.uk/wordle/).
