@@ -77,19 +77,26 @@ impl DayState {
         let mut res = Vec::new();
         let guess = _guess.chars().collect::<Vec<_>>();
         let actual = _actual.chars().collect::<Vec<_>>();
+        let mut same_pos = false;
+        let mut parital = false;
         let n = _actual.len();
         'put: for i in 0..n {
             for j in 0..n {
                 if guess[i] == actual[j] {
-                    if i == j {
+                    same_pos |= (i == j);
+                    if same_pos {
                         res.push(Result::Correct);
+                        continue 'put;
                     } else {
-                        res.push(Result::Partial);
+                        parital = true;
                     }
-                    continue 'put;
                 }
             }
-            res.push(Result::Wrong);
+            if parital {
+                res.push(Result::Partial);
+            } else {
+                res.push(Result::Wrong);
+            }
         }
         Attempt { slots: res }
     }
@@ -133,7 +140,7 @@ impl DayState {
 impl fmt::Display for DayState {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "\n<>==========<>\n");
-        write!(f, "poodle {} {}/6\n", self.date, 6 - self.remaining);
+        write!(f, "Poodle {} {}/6\n", self.date, 6 - self.remaining);
         for attempt in &self.stat.attempts {
             write!(f, "{}", attempt);
         }
