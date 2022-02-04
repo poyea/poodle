@@ -1,7 +1,7 @@
 #![allow(unused)]
 
 mod cli;
-mod data;
+mod words;
 mod logs;
 mod state;
 

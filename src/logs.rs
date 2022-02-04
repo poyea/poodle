@@ -7,6 +7,7 @@ use std::fs::{read_to_string, File};
 use std::path::Path;
 
 static LOGS: &'static str = include_str!("./assets/logs.json");
+static LOGS_LOCATION: &'static str = "logs.json";
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Pair {
@@ -22,8 +23,8 @@ pub struct Logs {
 
 impl Logs {
     pub fn get_logs() -> Logs {
-        if Path::new("logs.json").is_file() {
-            serde_json::from_str(&read_to_string("logs.json").unwrap()).unwrap()
+        if Path::new(LOGS_LOCATION).is_file() {
+            serde_json::from_str(&read_to_string(LOGS_LOCATION).unwrap()).unwrap()
         } else {
             serde_json::from_str(LOGS).unwrap()
         }
@@ -37,7 +38,7 @@ impl Logs {
             date: attempt_date,
             dump: format!("{}", state),
         });
-        serde_json::to_writer(&File::create("logs.json").unwrap(), &to_write_logs).unwrap();
+        serde_json::to_writer(&File::create(LOGS_LOCATION).unwrap(), &to_write_logs).unwrap();
     }
 }
 

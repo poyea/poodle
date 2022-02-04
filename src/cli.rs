@@ -1,6 +1,6 @@
-use crate::data::*;
 use crate::logs::*;
 use crate::state::*;
+use crate::words::*;
 use clap::Parser;
 use std::io;
 use std::io::Write;
