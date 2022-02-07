@@ -78,9 +78,9 @@ impl DayState {
         let guess = _guess.chars().collect::<Vec<_>>();
         let actual = _actual.chars().collect::<Vec<_>>();
         let mut same_pos = false;
-        let mut parital = false;
         let n = _actual.len();
         'put: for i in 0..n {
+            let mut parital = false;
             for j in 0..n {
                 if guess[i] == actual[j] {
                     same_pos |= (i == j);

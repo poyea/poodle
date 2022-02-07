@@ -23,7 +23,7 @@ $ poodle log
 #### Get help message
 ```bash
 $ poodle -h
-poodle 0.1.0
+poodle 0.2.0
 John Law <poyea@pm.me>
 Not a 🐩 (Poodle), but a word-guessing game from your terminal 🟩⬛🟩🟨🟩
 

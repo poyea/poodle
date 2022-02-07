@@ -5,9 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.2.0] - 2022-02-07
+### Added
 - Multiple fixes for styles and docs.
+- Several bug fixes.
 - Implement "not allowed" word list.
-- Write guide for extension.
 - GitHub Actions for release builds on multiple platforms.
 
 ## [0.1.0] - 2022-02-02
@@ -18,4 +21,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enable GitHub Actions.
 
 [Unreleased]: https://github.com/poyea/poodle/compare/v0.1.0...HEAD
+[0.2.0]: https://github.com/poyea/poodle/releases/tag/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/poyea/poodle/releases/tag/v0.1.0
