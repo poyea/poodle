@@ -21,7 +21,7 @@ impl fmt::Display for Result {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct Attempt {
     slots: Vec<Result>,
 }
@@ -77,14 +77,12 @@ impl DayState {
         let mut res = Vec::new();
         let guess = _guess.chars().collect::<Vec<_>>();
         let actual = _actual.chars().collect::<Vec<_>>();
-        let mut same_pos = false;
         let n = _actual.len();
         'put: for i in 0..n {
             let mut parital = false;
             for j in 0..n {
                 if guess[i] == actual[j] {
-                    same_pos |= (i == j);
-                    if same_pos {
+                    if i == j {
                         res.push(Result::Correct);
                         continue 'put;
                     } else {
@@ -146,5 +144,94 @@ impl fmt::Display for DayState {
         }
         write!(f, "<>==========<>\n");
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn validate_correctness() {
+        assert_eq!(
+            DayState::validate(&String::from("aaaaa"), &String::from("aaaaa")),
+            Attempt {
+                slots: vec![
+                    Result::Correct,
+                    Result::Correct,
+                    Result::Correct,
+                    Result::Correct,
+                    Result::Correct
+                ]
+            }
+        );
+
+        assert_eq!(
+            DayState::validate(&String::from("bbbbb"), &String::from("ccccc")),
+            Attempt {
+                slots: vec![
+                    Result::Wrong,
+                    Result::Wrong,
+                    Result::Wrong,
+                    Result::Wrong,
+                    Result::Wrong
+                ]
+            }
+        );
+    }
+
+    #[test]
+    fn validate_appearance() {
+        assert_eq!(
+            DayState::validate(&String::from("abyde"), &String::from("edxba")),
+            Attempt {
+                slots: vec![
+                    Result::Partial,
+                    Result::Partial,
+                    Result::Wrong,
+                    Result::Partial,
+                    Result::Partial
+                ]
+            }
+        );
+
+        assert_eq!(
+            DayState::validate(&String::from("aaxbb"), &String::from("bbxaa")),
+            Attempt {
+                slots: vec![
+                    Result::Partial,
+                    Result::Partial,
+                    Result::Correct,
+                    Result::Partial,
+                    Result::Partial
+                ]
+            }
+        );
+
+        assert_eq!(
+            DayState::validate(&String::from("arias"), &String::from("abyss")),
+            Attempt {
+                slots: vec![
+                    Result::Correct,
+                    Result::Wrong,
+                    Result::Wrong,
+                    Result::Partial,
+                    Result::Correct
+                ]
+            }
+        );
+
+        assert_eq!(
+            DayState::validate(&String::from("again"), &String::from("abyss")),
+            Attempt {
+                slots: vec![
+                    Result::Correct,
+                    Result::Wrong,
+                    Result::Partial,
+                    Result::Wrong,
+                    Result::Wrong
+                ]
+            }
+        );
     }
 }
