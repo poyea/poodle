@@ -14,6 +14,26 @@ Not a 🐩 (Poodle), but a word-guessing game from your terminal 🟩⬛🟩🟨
 ```bash
 $ poodle start
 ```
+<details>
+    <summary>An example (SPOILER!!!)</summary>
+
+    $ poodle start
+    [Feb 02, 2022] Hello poodler!
+    Your guess (6) → delta
+                    🟩🟨🟨⬛⬛
+    Your guess (5) → dwile
+                    🟩🟨⬛🟨🟨
+    Your guess (4) → dowel 
+                    🟩🟩🟩🟩🟩
+
+    <>==========<>
+    Poodle Feb 02, 2022 3/6
+    🟩🟨🟨⬛⬛
+    🟩🟨⬛🟨🟨
+    🟩🟩🟩🟩🟩
+    <>==========<>
+
+</details>
 
 #### Display full logs
 ```bash
