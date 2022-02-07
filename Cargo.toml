@@ -1,6 +1,6 @@
 [package]
 name = "poodle"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 authors = ["John Law <poyea@pm.me>"]
 
