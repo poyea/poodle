@@ -1,9 +1,6 @@
-use crate::logs::*;
-use crate::state::*;
-use crate::words::*;
+use crate::{logs::*, state::*, words::*};
 use clap::Parser;
-use std::io;
-use std::io::Write;
+use std::{io, io::Write};
 
 /// Not a 🐩 (Poodle), but a word-guessing game from your terminal 🟩⬛🟩🟨🟩
 #[derive(Debug, Parser)]

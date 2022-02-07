@@ -1,10 +1,12 @@
 use crate::state::DayState;
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Result};
-use std::collections::HashMap;
-use std::fmt;
-use std::fs::{read_to_string, File};
-use std::path::Path;
+use std::{
+    collections::HashMap,
+    fmt,
+    fs::{read_to_string, File},
+    path::Path,
+};
 
 static LOGS: &'static str = include_str!("./assets/logs.json");
 static LOGS_LOCATION: &'static str = "logs.json";

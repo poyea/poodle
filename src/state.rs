@@ -1,6 +1,5 @@
 use chrono::prelude::*;
-use std::cmp::PartialEq;
-use std::fmt;
+use std::{cmp::PartialEq, fmt};
 
 #[derive(Debug, PartialEq)]
 pub enum Result {
