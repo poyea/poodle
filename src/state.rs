@@ -110,7 +110,7 @@ impl DayState {
     }
 
     pub fn input_hygiene(guess: &String) -> bool {
-        return guess.len() == 5 && guess.chars().all(char::is_alphabetic);
+        return guess.len() == 5 && guess.chars().all(|c| c.is_ascii_lowercase());
     }
 
     pub fn guess(&mut self, word: String) -> String {
