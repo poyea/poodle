@@ -1,8 +1,6 @@
 use crate::state::DayState;
 use serde::{Deserialize, Serialize};
-use serde_json::{json, Result};
 use std::{
-    collections::HashMap,
     fmt,
     fs::{read_to_string, File},
     path::Path,
@@ -24,7 +22,7 @@ pub struct Logs {
 }
 
 impl Logs {
-    pub fn get_logs() -> Logs {
+    fn get_logs() -> Logs {
         if Path::new(LOGS_LOCATION).is_file() {
             serde_json::from_str(&read_to_string(LOGS_LOCATION).unwrap()).unwrap()
         } else {
@@ -33,23 +31,26 @@ impl Logs {
     }
 
     pub fn save_log(state: DayState) {
-        let attempt_date = DayState::get_today();
         let mut to_write_logs = Logs::get_logs();
         to_write_logs.last_attempted = state.date.clone();
         to_write_logs.data.push(Pair {
-            date: attempt_date,
+            date: DayState::get_today(),
             dump: format!("{}", state),
         });
         serde_json::to_writer(&File::create(LOGS_LOCATION).unwrap(), &to_write_logs).unwrap();
+    }
+
+    pub fn log() {
+        println!("{}", Logs::get_logs())
     }
 }
 
 impl fmt::Display for Logs {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         for pair in &self.data {
-            write!(f, "{}\n", pair.dump);
+            write!(f, "{}\n", pair.dump)?;
         }
-        write!(f, "Last attempted: {}\n", self.last_attempted);
+        write!(f, "Last attempted: {}\n", self.last_attempted)?;
         Ok(())
     }
 }

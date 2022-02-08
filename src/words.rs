@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use serde_json::{json, Result};
+use serde_json::from_str;
 use std::collections::HashMap;
 
 static WORDS: &'static str = include_str!("./assets/words.json");
@@ -12,9 +12,9 @@ pub struct Words {
 }
 
 pub fn get_words() -> Words {
-    serde_json::from_str(WORDS).unwrap()
+    from_str(WORDS).unwrap()
 }
 
 pub fn get_allowed() -> Vec<String> {
-    serde_json::from_str(ALLOWED).unwrap()
+    from_str(ALLOWED).unwrap()
 }

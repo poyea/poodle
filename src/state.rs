@@ -15,7 +15,7 @@ impl fmt::Display for Result {
             Result::Correct => '🟩',
             Result::Partial => '🟨',
         };
-        write!(f, "{}", block);
+        write!(f, "{}", block)?;
         Ok(())
     }
 }
@@ -28,9 +28,9 @@ pub struct Attempt {
 impl fmt::Display for Attempt {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         for slot in &self.slots {
-            write!(f, "{}", slot);
+            write!(f, "{}", slot)?;
         }
-        write!(f, "\n");
+        write!(f, "\n")?;
         Ok(())
     }
 }
@@ -136,12 +136,12 @@ impl DayState {
 
 impl fmt::Display for DayState {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "\n<>==========<>\n");
-        write!(f, "Poodle {} {}/6\n", self.date, 6 - self.remaining);
+        write!(f, "\n<>==========<>\n")?;
+        write!(f, "Poodle {} {}/6\n", self.date, 6 - self.remaining)?;
         for attempt in &self.stat.attempts {
-            write!(f, "{}", attempt);
+            write!(f, "{}", attempt)?;
         }
-        write!(f, "<>==========<>\n");
+        write!(f, "<>==========<>\n")?;
         Ok(())
     }
 }

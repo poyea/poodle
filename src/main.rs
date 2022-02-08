@@ -1,10 +1,7 @@
-#![allow(unused)]
-
-mod cli;
-mod logs;
-mod state;
-mod words;
+use clap::Parser;
+use poodle::{exec, Cli};
 
 fn main() {
-    cli::exec(state::DayState::get_today());
+    let args = Cli::parse();
+    exec(args)
 }
