@@ -1,12 +1,13 @@
 use crate::state::DayState;
 use serde::{Deserialize, Serialize};
 use std::{
+    env,
     fmt,
     fs::{read_to_string, File},
     path::Path,
 };
 
-static LOGS: &'static str = include_str!("./assets/logs.json");
+static LOGS_TEMPLATE: &'static str = include_str!("./assets/logs.json");
 static LOGS_LOCATION: &'static str = "logs.json";
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -22,26 +23,30 @@ pub struct Logs {
 }
 
 impl Logs {
-    fn get_logs() -> Logs {
-        if Path::new(LOGS_LOCATION).is_file() {
-            serde_json::from_str(&read_to_string(LOGS_LOCATION).unwrap()).unwrap()
+    fn get_logs() -> (Logs, String) {
+        let location = match env::var("LOGS") {
+            Ok(val) => val,
+            Err(_) => LOGS_LOCATION.to_string()
+        };
+        if Path::new(&location).is_file() {
+            (serde_json::from_str(&read_to_string(&location).unwrap()).unwrap(), location)
         } else {
-            serde_json::from_str(LOGS).unwrap()
+            (serde_json::from_str(LOGS_TEMPLATE).unwrap(), location)
         }
     }
 
     pub fn save_log(state: DayState) {
-        let mut to_write_logs = Logs::get_logs();
+        let (mut to_write_logs, location) = Logs::get_logs();
         to_write_logs.last_attempted = state.date.clone();
         to_write_logs.data.push(Pair {
             date: DayState::get_today(),
             dump: format!("{}", state),
         });
-        serde_json::to_writer(&File::create(LOGS_LOCATION).unwrap(), &to_write_logs).unwrap();
+        serde_json::to_writer(&File::create(location).unwrap(), &to_write_logs).unwrap();
     }
 
     pub fn log() {
-        println!("{}", Logs::get_logs())
+        println!("{}", Logs::get_logs().0)
     }
 }
 
