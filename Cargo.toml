@@ -3,6 +3,12 @@ name = "poodle"
 version = "0.3.0"
 edition = "2021"
 authors = ["John Law <poyea@pm.me>"]
+description = "Not a poodle, but a word-guessing game from your terminal"
+include = ["src/**/*", "LICENSE", "README.md"]
+license-file = "LICENSE"
+readme = "README.md"
+repository = "https://github.com/poyea/poodle/"
+keywords = ["wordle", "wordle-rust", "poodle"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
