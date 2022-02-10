@@ -52,8 +52,13 @@ fn start(today: String) {
     }
 }
 
+fn print_clear_console() {
+    print!("\x1B[2J")
+}
+
 pub fn exec(args: Cli) {
     let today = state::DayState::get_today();
+    print_clear_console();
     println!("[{}] Hello poodler!", &today);
     match args.cmd {
         Instruction::Start => start(today),
