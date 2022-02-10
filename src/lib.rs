@@ -5,6 +5,7 @@ mod state;
 mod words;
 
 pub use cli::{Cli, Instruction};
+pub use keyboard::Keyboard;
 pub use logs::Logs;
 
 use state::DayState;
@@ -15,12 +16,16 @@ fn start(today: String) {
     let ws = get_words();
     let allowed = get_allowed();
 
+    let mut keyboard = Keyboard { keys: Vec::new() };
+    keyboard.init();
+
     let today_word = ws.data[&today].to_string();
     let mut today_state = DayState::new(today_word);
 
     let stdin = io::stdin();
     'game: while today_state.remaining != 0 {
         {
+            print!("{}", keyboard);
             print!("Your guess ({}) → ", today_state.remaining);
             io::stdout().flush().unwrap();
         }
@@ -31,6 +36,7 @@ fn start(today: String) {
         }
         if DayState::input_hygiene(&buffer) {
             if DayState::input_allowed(&buffer, &allowed) {
+                keyboard.set(&buffer);
                 let attempt_fmt = today_state.guess(buffer);
                 {
                     print!("\t\t{}", attempt_fmt);
