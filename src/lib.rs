@@ -1,4 +1,5 @@
 mod cli;
+mod keyboard;
 mod logs;
 mod state;
 mod words;

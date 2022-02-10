@@ -1,8 +1,7 @@
 use crate::state::DayState;
 use serde::{Deserialize, Serialize};
 use std::{
-    env,
-    fmt,
+    env, fmt,
     fs::{read_to_string, File},
     path::Path,
 };
@@ -26,10 +25,13 @@ impl Logs {
     fn get_logs() -> (Logs, String) {
         let location = match env::var("LOGS") {
             Ok(val) => val,
-            Err(_) => LOGS_LOCATION.to_string()
+            Err(_) => LOGS_LOCATION.to_string(),
         };
         if Path::new(&location).is_file() {
-            (serde_json::from_str(&read_to_string(&location).unwrap()).unwrap(), location)
+            (
+                serde_json::from_str(&read_to_string(&location).unwrap()).unwrap(),
+                location,
+            )
         } else {
             (serde_json::from_str(LOGS_TEMPLATE).unwrap(), location)
         }
