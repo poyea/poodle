@@ -22,7 +22,7 @@ impl fmt::Display for Result {
 
 #[derive(Debug, PartialEq)]
 pub struct Attempt {
-    slots: Vec<Result>,
+    pub slots: Vec<Result>,
 }
 
 impl fmt::Display for Attempt {
@@ -37,7 +37,7 @@ impl fmt::Display for Attempt {
 
 #[derive(Debug)]
 pub struct Stat {
-    attempts: Vec<Attempt>,
+    pub attempts: Vec<Attempt>,
 }
 
 impl Stat {
@@ -50,7 +50,7 @@ impl Stat {
 
 #[derive(Debug)]
 pub struct DayState {
-    stat: Stat,
+    pub stat: Stat,
     riddle: String,
     pub date: String,
     pub remaining: i64,
@@ -110,7 +110,7 @@ impl DayState {
         return guess.len() == 5 && guess.chars().all(|c| c.is_ascii_lowercase());
     }
 
-    pub fn guess(&mut self, word: String) -> String {
+    pub fn guess(&mut self, word: &String) -> String {
         self.remaining -= 1;
         self.stat
             .attempts

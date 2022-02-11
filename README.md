@@ -16,23 +16,7 @@ $ poodle start
 ```
 <details>
     <summary>An example (SPOILER!!!)</summary>
-
-    $ poodle start
-    [Feb 02, 2022] Hello poodler!
-    Your guess (6) → delta
-                    🟩🟨🟨⬛⬛
-    Your guess (5) → dwile
-                    🟩🟨⬛🟨🟨
-    Your guess (4) → dowel 
-                    🟩🟩🟩🟩🟩
-
-    <>==========<>
-    Poodle Feb 02, 2022 3/6
-    🟩🟨🟨⬛⬛
-    🟩🟨⬛🟨🟨
-    🟩🟩🟩🟩🟩
-    <>==========<>
-
+    <img src="https://user-images.githubusercontent.com/24757020/153647249-ea80f3f6-f4fa-4593-9659-f6c92e5410cd.jpg" alt="Poodle screenshot">
 </details>
 
 #### Display full logs
