@@ -53,7 +53,7 @@ impl fmt::Display for Keyboard {
         write!(f, "\n")?;
         let mut r = 0;
         for row in &self.keys {
-            for _ in 0..r {
+            for _ in 0..(2 * r - 1) {
                 write!(f, " ")?;
             }
             for ch in row {
