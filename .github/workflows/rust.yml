@@ -20,34 +20,22 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
+        include:
+          - os: ubuntu-latest
+            exe: poodle
+            target: x86_64-unknown-linux-gnu
+          - os: macos-latest
+            exe: poodle
+            target: x86_64-apple-darwin
+          - os: windows-latest
+            exe: poodle.exe
+            target: x86_64-pc-windows-msvc
     steps:
     - uses: actions/checkout@v2
+    - uses: Swatinem/rust-cache@v1
     - name: Build
       run: cargo build --verbose --all --release
-    - name: Tar files
-      run: tar -cvf ${{ matrix.os }}_build.tar -C target/release poodle
-    - name: Archive release binary
-      uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v2
       with:
-        name: build
-        path: |
-          ${{ matrix.os }}_build.tar
-        retention-days: 2
-  release_build_windows:
-    name: release_build (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest]
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build
-      run: cargo build --verbose --all --release
-    - name: Archive release binary
-      uses: actions/upload-artifact@v2
-      with:
-        name: build
-        path: |
-          target/release/poodle.exe
-        retention-days: 2
+        name: poodle-${{ matrix.target }}
+        path: target/release/${{ matrix.exe }}
