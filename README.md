@@ -1,5 +1,5 @@
-# Poodle [![Rust](https://github.com/poyea/poodle/actions/workflows/rust.yml/badge.svg)](https://github.com/poyea/poodle/actions/workflows/rust.yml)
-Not a 🐩 (Poodle), but a word-guessing game from your terminal 🟩⬛🟩🟨🟩
+# Poodle [![Rust](https://github.com/poyea/poodle/actions/workflows/rust.yml/badge.svg)](https://github.com/poyea/poodle/actions/workflows/rust.yml) [![Release](https://github.com/poyea/poodle/actions/workflows/release.yml/badge.svg)](https://github.com/poyea/poodle/actions/workflows/release.yml) [![GitHub issues](https://img.shields.io/github/issues/poyea/poodle?color=red)](https://github.com/poyea/poodle/issues) [![GitHub forks](https://img.shields.io/github/forks/poyea/poodle)](https://github.com/poyea/poodle/network) [![GitHub stars](https://img.shields.io/github/stars/poyea/poodle?color=yellow)](https://github.com/poyea/poodle/stargazers) [![GitHub license](https://img.shields.io/github/license/poyea/poodle?color=white)](https://github.com/poyea/poodle/blob/main/LICENSE)
+Not a 🐩 (Poodle), but a word-guessing game from your terminal. 🟩⬛🟩🟨🟩
 
 ## Features
 * ✅ In Rust 🦀
@@ -26,20 +26,7 @@ $ poodle log
 
 #### Get help message
 ```bash
-$ poodle -h
-poodle 0.3.0
-John Law <poyea@pm.me>
-Not a 🐩 (Poodle), but a word-guessing game from your terminal 🟩⬛🟩🟨🟩
-
-USAGE:
-    poodle <CMD>
-
-ARGS:
-    <CMD>    Instruction [possible values: start, log]
-
-OPTIONS:
-    -h, --help       Print help information
-    -V, --version    Print version information
+$ poodle --help
 ```
 
 ## Building Poodle
