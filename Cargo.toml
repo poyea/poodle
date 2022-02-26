@@ -1,6 +1,6 @@
 [package]
 name = "poodle"
-version = "0.4.0"
+version = "0.5.0"
 edition = "2021"
 authors = ["John Law <poyea@pm.me>"]
 description = "Not a poodle, but a word-guessing game from your terminal"

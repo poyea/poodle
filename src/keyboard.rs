@@ -44,7 +44,7 @@ impl Keyboard {
             .collect()
     }
 
-    pub fn set(&mut self, state: &DayState, guess: &String) {
+    pub fn set_key_with_guess(&mut self, state: &DayState, guess: &String) {
         'next: for res in state.stat.attempts.last().unwrap().slots.iter().zip(
             guess
                 .chars()
@@ -59,10 +59,9 @@ impl Keyboard {
                             Result::Wrong => KeyState::Touched(Result::Wrong),
                             Result::Correct => KeyState::Touched(Result::Correct),
                             Result::Partial => match ch.used {
-                                KeyState::Touched(Result::Wrong) | KeyState::Untouched => {
-                                    KeyState::Touched(Result::Partial)
-                                }
-                                KeyState::Touched(Result::Partial) => {
+                                KeyState::Touched(Result::Wrong)
+                                | KeyState::Untouched
+                                | KeyState::Touched(Result::Partial) => {
                                     KeyState::Touched(Result::Partial)
                                 }
                                 KeyState::Touched(Result::Correct) => {

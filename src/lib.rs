@@ -37,7 +37,7 @@ fn start(today: String) {
         if DayState::input_hygiene(&buffer) {
             if DayState::input_allowed(&buffer, &allowed) {
                 let attempt_fmt = today_state.guess(&buffer);
-                keyboard.set(&today_state, &buffer);
+                keyboard.set_key_with_guess(&today_state, &buffer);
                 {
                     print!("\t\t{}", attempt_fmt);
                     io::stdout().flush().unwrap();
@@ -63,7 +63,7 @@ fn print_clear_console() {
 }
 
 pub fn exec(args: Cli) {
-    let today = "Feb 02, 2022".to_string();
+    let today = state::DayState::get_today();
     print_clear_console();
     println!("[{}] Hello poodler!", &today);
     match args.cmd {
