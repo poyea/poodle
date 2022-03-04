@@ -15,11 +15,24 @@ pub struct Key {
 
 impl fmt::Display for Key {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let wrong_color: &'static str = "\x1b[1;30m";
+        let correct_color: &'static str = "\x1b[1;32m";
+        let partial_color: &'static str = "\x1b[1;33m";
+        let no_color: &'static str = "\x1b[0m";
+        let wrapped_color = |color_str: &str, data: char| -> String {
+            format!("{}{}{}", color_str, data, no_color)
+        };
         match &self.used {
-            KeyState::Touched(Result::Wrong) => write!(f, "\x1b[1;30m{}\x1b[0m", self.data)?,
-            KeyState::Touched(Result::Correct) => write!(f, "\x1b[1;32m{}\x1b[0m", self.data)?,
-            KeyState::Touched(Result::Partial) => write!(f, "\x1b[1;33m{}\x1b[0m", self.data)?,
-            KeyState::Untouched => write!(f, "\x1b[0m{}\x1b[0m", self.data)?,
+            KeyState::Touched(Result::Wrong) => {
+                write!(f, "{}", wrapped_color(wrong_color, self.data))?
+            }
+            KeyState::Touched(Result::Correct) => {
+                write!(f, "{}", wrapped_color(correct_color, self.data))?
+            }
+            KeyState::Touched(Result::Partial) => {
+                write!(f, "{}", wrapped_color(partial_color, self.data))?
+            }
+            KeyState::Untouched => write!(f, "{}", wrapped_color(no_color, self.data))?,
         };
         Ok(())
     }
@@ -82,6 +95,7 @@ impl fmt::Display for Keyboard {
         write!(f, "\n")?;
         let mut r = 0;
         for row in &self.keys {
+            // spaces around
             for _ in 0..(2 * r - 1) {
                 write!(f, " ")?;
             }

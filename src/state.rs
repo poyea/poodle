@@ -72,6 +72,22 @@ impl DayState {
         }
     }
 
+    pub fn input_hygiene(guess: &String) -> bool {
+        return guess.len() == 5 && guess.chars().all(|c| c.is_ascii_lowercase());
+    }
+
+    pub fn input_allowed(guess: &String, allowed: &Vec<String>) -> bool {
+        if let Ok(_) = allowed.binary_search_by(|p| p.cmp(&guess)) {
+            true
+        } else {
+            false
+        }
+    }
+
+    fn char_compare(_guess_char: &char, _actual_char: &char) -> bool {
+        _guess_char == _actual_char
+    }
+
     fn validate(_guess: &String, _actual: &String) -> Attempt {
         let mut res = Vec::new();
         let guess = _guess.chars().collect::<Vec<_>>();
@@ -80,7 +96,7 @@ impl DayState {
         'put: for i in 0..n {
             let mut parital = false;
             for j in 0..n {
-                if guess[i] == actual[j] {
+                if DayState::char_compare(&guess[i], &actual[j]) {
                     if i == j {
                         res.push(Result::Correct);
                         continue 'put;
@@ -96,18 +112,6 @@ impl DayState {
             }
         }
         Attempt { slots: res }
-    }
-
-    pub fn input_allowed(guess: &String, allowed: &Vec<String>) -> bool {
-        if let Ok(_) = allowed.binary_search_by(|p| p.cmp(&guess)) {
-            true
-        } else {
-            false
-        }
-    }
-
-    pub fn input_hygiene(guess: &String) -> bool {
-        return guess.len() == 5 && guess.chars().all(|c| c.is_ascii_lowercase());
     }
 
     pub fn guess(&mut self, word: &String) -> String {

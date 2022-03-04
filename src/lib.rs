@@ -23,17 +23,17 @@ fn start(today: String) {
     let mut today_state = DayState::new(today_word);
 
     let stdin = io::stdin();
+
     'game: while today_state.remaining != 0 {
-        {
+        let ask_guess = || -> String {
+            let mut buffer = String::new();
             print!("{}", keyboard);
             print!("Your guess ({}) → ", today_state.remaining);
             io::stdout().flush().unwrap();
-        }
-        let mut buffer = String::new();
-        {
             stdin.read_line(&mut buffer).unwrap();
-            buffer = buffer.trim().to_string();
-        }
+            buffer.trim().to_string()
+        };
+        let buffer = ask_guess();
         if DayState::input_hygiene(&buffer) {
             if DayState::input_allowed(&buffer, &allowed) {
                 let attempt_fmt = today_state.guess(&buffer);
