@@ -20,15 +20,15 @@ fn start(today: String) {
     keyboard.init();
 
     let today_word = ws.data[&today].to_string();
-    let mut today_state = DayState::new(today_word);
+    let mut today_state = DayState::new(today_word, 6);
 
     let stdin = io::stdin();
 
-    'game: while today_state.remaining != 0 {
+    'game: while today_state.remaining_guess != 0 {
         let ask_guess = || -> String {
             let mut buffer = String::new();
             print!("{}", keyboard);
-            print!("Your guess ({}) → ", today_state.remaining);
+            print!("Your guess ({}) → ", today_state.remaining_guess);
             io::stdout().flush().unwrap();
             stdin.read_line(&mut buffer).unwrap();
             buffer.trim().to_string()

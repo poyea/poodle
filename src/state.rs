@@ -53,7 +53,8 @@ pub struct DayState {
     pub stat: Stat,
     riddle: String,
     pub date: String,
-    pub remaining: i64,
+    pub total_guess: i64,
+    pub remaining_guess: i64,
     crushed: bool,
 }
 
@@ -62,12 +63,13 @@ impl DayState {
         format!("{}", Local::now().format("%b %d, %Y"))
     }
 
-    pub fn new(riddle: String) -> DayState {
+    pub fn new(riddle: String, total_guess: i64) -> DayState {
         DayState {
             crushed: false,
             riddle: riddle,
             date: DayState::get_today(),
-            remaining: 6,
+            total_guess: total_guess,
+            remaining_guess: total_guess,
             stat: Stat::start(),
         }
     }
@@ -115,7 +117,7 @@ impl DayState {
     }
 
     pub fn guess(&mut self, word: &String) -> String {
-        self.remaining -= 1;
+        self.remaining_guess -= 1;
         self.stat
             .attempts
             .push(DayState::validate(&word, &self.riddle));
@@ -141,7 +143,13 @@ impl DayState {
 impl fmt::Display for DayState {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "\n<>==========<>\n")?;
-        write!(f, "Poodle {} {}/6\n", self.date, 6 - self.remaining)?;
+        write!(
+            f,
+            "Poodle {} {}/{}\n",
+            self.date,
+            self.total_guess - self.remaining_guess,
+            self.total_guess
+        )?;
         for attempt in &self.stat.attempts {
             write!(f, "{}", attempt)?;
         }
