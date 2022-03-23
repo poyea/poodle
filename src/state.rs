@@ -74,11 +74,11 @@ impl DayState {
         }
     }
 
-    pub fn input_hygiene(guess: &String) -> bool {
-        return guess.len() == 5 && guess.chars().all(|c| c.is_ascii_lowercase());
+    pub fn input_hygiene(&self, guess: &String) -> bool {
+        return guess.len() == self.riddle.len() && guess.chars().all(|c| c.is_ascii_lowercase());
     }
 
-    pub fn input_allowed(guess: &String, allowed: &Vec<String>) -> bool {
+    pub fn input_allowed(&self, guess: &String, allowed: &Vec<String>) -> bool {
         if let Ok(_) = allowed.binary_search_by(|p| p.cmp(&guess)) {
             true
         } else {
