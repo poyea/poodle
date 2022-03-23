@@ -245,4 +245,11 @@ mod tests {
             }
         );
     }
+    #[test]
+    fn validate_char_compare() {
+        assert_eq!(DayState::char_compare(&'a', &'a'), true);
+        assert_eq!(DayState::char_compare(&'\0', &'\0'), true);
+        assert_eq!(DayState::char_compare(&'a', &'b'), false);
+        assert_eq!(DayState::char_compare(&'z', &'x'), false);
+    }
 }
