@@ -3,9 +3,9 @@ use std::{cmp::PartialEq, fmt};
 
 #[derive(Debug, PartialEq)]
 pub enum Result {
-    Wrong = -1,
-    Correct = 1,
-    Partial = 0,
+    Wrong,
+    Correct,
+    Partial,
 }
 
 impl fmt::Display for Result {
