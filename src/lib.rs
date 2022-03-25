@@ -34,22 +34,22 @@ fn start(today: String) {
             buffer.trim().to_string()
         };
         let buffer = ask_guess();
-        if today_state.input_hygiene(&buffer) {
-            if today_state.input_allowed(&buffer, &allowed) {
-                let attempt_fmt = today_state.guess(&buffer);
-                keyboard.set_key_with_guess(&today_state, &buffer);
-                {
-                    print!("\t\t{}", attempt_fmt);
-                    io::stdout().flush().unwrap();
-                }
-                if today_state.finished() {
-                    break 'game;
-                }
-            } else {
-                println!("Unallowed word ← {}", buffer);
-            }
-        } else {
+        if !today_state.input_hygiene(&buffer) {
             println!("Invalid input  ← {}", buffer);
+            continue;
+        }
+        if !today_state.input_allowed(&buffer, &allowed) {
+            println!("Unallowed word ← {}", buffer);
+            continue;
+        }
+        let attempt_fmt = today_state.guess(&buffer);
+        keyboard.set_key_with_guess(&today_state, &buffer);
+        {
+            print!("\t\t{}", attempt_fmt);
+            io::stdout().flush().unwrap();
+        }
+        if today_state.finished() {
+            break 'game;
         }
     }
     {
