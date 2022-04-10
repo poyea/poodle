@@ -95,21 +95,22 @@ impl DayState {
         let guess = _guess.chars().collect::<Vec<_>>();
         let actual = _actual.chars().collect::<Vec<_>>();
         let n = _actual.len();
-        'put: for i in 0..n {
-            let mut parital = false;
+        for i in 0..n {
+            let mut partial = 0;
             for j in 0..n {
                 if DayState::char_compare(&guess[i], &actual[j]) {
                     if i == j {
                         res.push(Result::Correct);
-                        continue 'put;
+                        partial = 1;
+                        break;
                     } else {
-                        parital = true;
+                        partial = -1;
                     }
                 }
             }
-            if parital {
+            if partial == -1 {
                 res.push(Result::Partial);
-            } else {
+            } else if partial == 0 {
                 res.push(Result::Wrong);
             }
         }
