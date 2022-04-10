@@ -124,14 +124,15 @@ impl DayState {
     }
 
     pub fn finished(&self) -> bool {
-        return self
-            .stat
-            .attempts
-            .last()
-            .unwrap()
-            .slots
-            .iter()
-            .all(|res| res == &Result::Correct);
+        return !self.stat.attempts.is_empty()
+            && self
+                .stat
+                .attempts
+                .last()
+                .unwrap()
+                .slots
+                .iter()
+                .all(|res| res == &Result::Correct);
     }
 }
 
