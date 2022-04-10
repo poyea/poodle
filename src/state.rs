@@ -55,7 +55,6 @@ pub struct DayState {
     pub date: String,
     pub total_guess: i64,
     pub remaining_guess: i64,
-    crushed: bool,
 }
 
 impl DayState {
@@ -65,7 +64,6 @@ impl DayState {
 
     pub fn new(riddle: String, total_guess: i64) -> DayState {
         DayState {
-            crushed: false,
             riddle: riddle,
             date: DayState::get_today(),
             total_guess: total_guess,
@@ -122,22 +120,18 @@ impl DayState {
         self.stat
             .attempts
             .push(DayState::validate(&word, &self.riddle));
-        if self
+        format!("{}", self.stat.attempts.last().unwrap())
+    }
+
+    pub fn finished(&self) -> bool {
+        return self
             .stat
             .attempts
             .last()
             .unwrap()
             .slots
             .iter()
-            .all(|res| res == &Result::Correct)
-        {
-            self.crushed = true;
-        }
-        format!("{}", self.stat.attempts.last().unwrap())
-    }
-
-    pub fn finished(&self) -> bool {
-        return self.crushed;
+            .all(|res| res == &Result::Correct);
     }
 }
 
