@@ -10,6 +10,14 @@ Not a 🐩 (Poodle), but a word-guessing game from your terminal. 🟩⬛🟩�
 
 ## How to use it
 
+#### Setting up Poodle
+```sh
+$ cargo -V
+cargo 1.56.0 (4ed5d137b 2021-10-04)
+$ cargo install --path .      # install
+$ cargo run -- start          # or run directly
+```
+
 #### Guess today's riddle
 ```bash
 $ poodle start
@@ -27,16 +35,6 @@ $ poodle log
 #### Get help message
 ```bash
 $ poodle --help
-```
-
-## Building Poodle
-```sh
-$ cargo -V
-cargo 1.56.0 (4ed5d137b 2021-10-04)
-$ cargo run                   # run
-$ cargo build --all --release # build
-$ cargo test --all --release  # test
-$ cargo doc --all --release   # documentation
 ```
 
 ## If you like this, please
