@@ -6,6 +6,10 @@ and Poodle adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ## [Unreleased]
 
+## [0.5.0] - 2022-02-26
+### Added
+- Bug fixes.
+
 ## [0.4.0] - 2022-02-14
 ### Added
 - Environment variable for log location.

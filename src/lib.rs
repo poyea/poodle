@@ -44,15 +44,13 @@ fn start(today: String) {
         }
         let attempt_fmt = today_state.guess(&buffer);
         keyboard.set_key_with_guess(&today_state, &buffer);
-        {
-            print!("\t\t{}", attempt_fmt);
-            io::stdout().flush().unwrap();
-        }
+
+        print!("\t\t{}", attempt_fmt);
+        io::stdout().flush().unwrap();
     }
-    {
-        println!("{}", &today_state);
-        Logs::save_log(today_state);
-    }
+
+    println!("{}", &today_state);
+    Logs::save_log(today_state);
 }
 
 fn print_clear_console() {
