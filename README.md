@@ -10,12 +10,9 @@ Not a 🐩 (Poodle), but a word-guessing game from your terminal. 🟩⬛🟩�
 
 ## How to use it
 
-#### Setting up Poodle
+#### Install Poodle 🐩
 ```sh
-$ cargo -V
-cargo 1.56.0 (4ed5d137b 2021-10-04)
-$ cargo install --path .      # install
-$ cargo run -- start          # or run directly
+$ cargo install poodle    # install from crates.io!
 ```
 
 #### Guess today's riddle
