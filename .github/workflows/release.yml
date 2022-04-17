@@ -67,4 +67,6 @@ jobs:
         with:
           files: target/${{ matrix.target }}/release/poodle-${{ matrix.target }}.zip
           generate_release_notes: true
-          draft: true
+      - uses: katyo/publish-crates@v1
+        with:
+            registry-token: ${{ secrets.CARGO_REGISTRY_TOKEN }}

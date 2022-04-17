@@ -2,12 +2,12 @@ use crate::state::DayState;
 use serde::{Deserialize, Serialize};
 use std::{
     env, fmt,
-    fs::{read_to_string, File},
+    fs::{create_dir_all, read_to_string, File},
     path::Path,
 };
 
 static LOGS_TEMPLATE: &'static str = include_str!("./assets/logs.json");
-static LOGS_LOCATION: &'static str = "logs.json";
+static LOGS_LOCATION: &'static str = "/tmp/poodle/logs.json";
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Pair {
@@ -33,6 +33,9 @@ impl Logs {
                 location,
             )
         } else {
+            let path = Path::new(&location);
+            let prefix = path.parent().unwrap();
+            create_dir_all(prefix).unwrap();
             (serde_json::from_str(LOGS_TEMPLATE).unwrap(), location)
         }
     }
