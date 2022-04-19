@@ -66,20 +66,17 @@ impl Keyboard {
                 .chain(iter::repeat(&'\0')),
         ) {
             for row in self.keys.iter_mut() {
-                for mut ch in row.iter_mut() {
-                    if ch.data == *res.1 {
-                        ch.used = match res.0 {
+                for mut key in row.iter_mut() {
+                    if key.data == *res.1 {
+                        // found the character
+                        key.used = match res.0 {
                             Result::Wrong => KeyState::Touched(Result::Wrong),
                             Result::Correct => KeyState::Touched(Result::Correct),
-                            Result::Partial => match ch.used {
-                                KeyState::Touched(Result::Wrong)
-                                | KeyState::Untouched
-                                | KeyState::Touched(Result::Partial) => {
-                                    KeyState::Touched(Result::Partial)
-                                }
+                            Result::Partial => match key.used {
                                 KeyState::Touched(Result::Correct) => {
                                     KeyState::Touched(Result::Correct)
                                 }
+                                _ => KeyState::Touched(Result::Partial),
                             },
                         };
                         continue 'next;
