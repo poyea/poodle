@@ -1,7 +1,7 @@
 mod cli;
 mod keyboard;
 mod logs;
-mod state;
+pub mod state;
 mod words;
 
 pub use cli::{Cli, Instruction};

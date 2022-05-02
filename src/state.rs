@@ -241,6 +241,7 @@ mod tests {
             }
         );
     }
+
     #[test]
     fn validate_char_compare() {
         assert_eq!(DayState::char_compare(&'a', &'a'), true);
