@@ -1,4 +1,5 @@
 use crate::state::{DayState, Result};
+use colored::*;
 use std::{fmt, iter};
 
 #[derive(Debug, PartialEq)]
@@ -15,24 +16,13 @@ pub struct Key {
 
 impl fmt::Display for Key {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let wrong_color: &'static str = "\x1b[1;30m";
-        let correct_color: &'static str = "\x1b[1;32m";
-        let partial_color: &'static str = "\x1b[1;33m";
-        let no_color: &'static str = "\x1b[0m";
-        let wrapped_color = |color_str: &str, data: char| -> String {
-            format!("{}{}{}", color_str, data, no_color)
-        };
         match &self.used {
             KeyState::Touched(Result::Wrong) => {
-                write!(f, "{}", wrapped_color(wrong_color, self.data))?
+                write!(f, "{}", self.data.to_string().truecolor(105, 105, 105))?
             }
-            KeyState::Touched(Result::Correct) => {
-                write!(f, "{}", wrapped_color(correct_color, self.data))?
-            }
-            KeyState::Touched(Result::Partial) => {
-                write!(f, "{}", wrapped_color(partial_color, self.data))?
-            }
-            KeyState::Untouched => write!(f, "{}", wrapped_color(no_color, self.data))?,
+            KeyState::Touched(Result::Correct) => write!(f, "{}", self.data.to_string().green())?,
+            KeyState::Touched(Result::Partial) => write!(f, "{}", self.data.to_string().yellow())?,
+            KeyState::Untouched => write!(f, "{}", self.data)?,
         };
         Ok(())
     }
