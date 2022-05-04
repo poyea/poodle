@@ -54,7 +54,11 @@ fn start(today: String) {
 }
 
 fn print_clear_console() {
-    print!("\x1B[2J")
+    if cfg!(windows) {
+        print!("\x1b[2J");
+    } else if cfg!(unix) {
+        print!("\x1B[2J");
+    }
 }
 
 pub fn exec(args: Cli) {
