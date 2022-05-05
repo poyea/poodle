@@ -13,8 +13,8 @@ impl fmt::Display for Result {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let block = match self {
             Result::Wrong => '⬛'.to_string().truecolor(105, 105, 105),
-            Result::Correct => '🟩'.to_string().green(),
-            Result::Partial => '🟨'.to_string().yellow(),
+            Result::Correct => '🟩'.to_string().truecolor(51, 255, 51),
+            Result::Partial => '🟨'.to_string().truecolor(255, 255, 51),
         };
         write!(f, "{}", block)?;
         Ok(())

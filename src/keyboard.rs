@@ -20,8 +20,8 @@ impl fmt::Display for Key {
             KeyState::Touched(Result::Wrong) => {
                 write!(f, "{}", self.data.to_string().truecolor(105, 105, 105))?
             }
-            KeyState::Touched(Result::Correct) => write!(f, "{}", self.data.to_string().green())?,
-            KeyState::Touched(Result::Partial) => write!(f, "{}", self.data.to_string().yellow())?,
+            KeyState::Touched(Result::Correct) => write!(f, "{}", self.data.to_string().truecolor(51, 255, 51))?,
+            KeyState::Touched(Result::Partial) => write!(f, "{}", self.data.to_string().truecolor(255, 255, 51))?,
             KeyState::Untouched => write!(f, "{}", self.data)?,
         };
         Ok(())
