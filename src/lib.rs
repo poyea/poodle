@@ -24,7 +24,7 @@ fn start(today: String) {
 
     let stdin = io::stdin();
 
-    while today_state.remaining_guess != 0 && !today_state.finished() {
+    while !today_state.finished() {
         let ask_guess = || -> String {
             let mut buffer = String::new();
             print!("{}", keyboard);
