@@ -52,7 +52,7 @@ impl Keyboard {
     }
 
     pub fn set_key_with_guess(&mut self, state: &DayState, guess: &String) {
-        'next: for res in state.stat.attempts.last().unwrap().slots.iter().zip(
+        'next: for (attempt, guess_char) in state.stat.attempts.last().unwrap().slots.iter().zip(
             guess
                 .chars()
                 .collect::<Vec<_>>()
@@ -61,9 +61,9 @@ impl Keyboard {
         ) {
             for row in self.keys.iter_mut() {
                 for mut key in row.iter_mut() {
-                    if key.data == *res.1 {
+                    if key.data == *guess_char {
                         // found the character
-                        key.used = match res.0 {
+                        key.used = match attempt {
                             Result::Wrong => KeyState::Touched(Result::Wrong),
                             Result::Correct => KeyState::Touched(Result::Correct),
                             Result::Partial => match key.used {

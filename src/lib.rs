@@ -25,6 +25,7 @@ fn start(today: String) {
     let stdin = io::stdin();
 
     while !today_state.finished() {
+
         let ask_guess = || -> String {
             let mut buffer = String::new();
             print!("{}", keyboard);
@@ -33,15 +34,19 @@ fn start(today: String) {
             stdin.read_line(&mut buffer).unwrap();
             buffer.trim().to_string()
         };
+
         let buffer = ask_guess();
+
         if !today_state.input_hygiene(&buffer) {
             println!("Invalid input  ← {}", buffer);
             continue;
         }
+
         if !today_state.input_allowed(&buffer, &allowed) {
             println!("Unallowed word ← {}", buffer);
             continue;
         }
+
         let attempt_fmt = today_state.guess(&buffer);
         keyboard.set_key_with_guess(&today_state, &buffer);
 

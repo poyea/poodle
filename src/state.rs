@@ -78,11 +78,7 @@ impl DayState {
     }
 
     pub fn input_allowed(&self, guess: &String, allowed: &Vec<String>) -> bool {
-        if let Ok(_) = allowed.binary_search_by(|p| p.cmp(&guess)) {
-            true
-        } else {
-            false
-        }
+        allowed.binary_search_by(|p| p.cmp(&guess)).is_ok()
     }
 
     fn char_compare(_guess_char: &char, _actual_char: &char) -> bool {
