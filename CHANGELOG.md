@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and Poodle adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Improve expressiveness.
+- Add benchmark.
+- Fix cross-platform clear control sequence issue.
+- Refactor code.
 
 ## [0.6.1] - 2022-04-17
 ### Added
