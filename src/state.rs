@@ -91,23 +91,18 @@ impl DayState {
         let actual = _actual.chars().collect::<Vec<_>>();
         let n = _actual.len();
         for i in 0..n {
-            let mut partial = 0;
+            let mut result_holder = Result::Wrong;
             for j in 0..n {
                 if DayState::char_compare(&guess[i], &actual[j]) {
                     if i == j {
-                        res.push(Result::Correct);
-                        partial = 1;
+                        result_holder = Result::Correct;
                         break;
                     } else {
-                        partial = -1;
+                        result_holder = Result::Partial;
                     }
                 }
             }
-            if partial == -1 {
-                res.push(Result::Partial);
-            } else if partial == 0 {
-                res.push(Result::Wrong);
-            }
+            res.push(result_holder);
         }
         Attempt { slots: res }
     }
