@@ -10,6 +10,7 @@ and Poodle adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 - Add benchmark.
 - Fix cross-platform clear control sequence issue.
 - Refactor code.
+- Fix cross platform issues.
 
 ## [0.6.1] - 2022-04-17
 ### Added
