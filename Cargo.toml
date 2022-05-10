@@ -1,6 +1,6 @@
 [package]
 name = "poodle"
-version = "0.6.1"
+version = "0.6.2"
 edition = "2021"
 authors = ["John Law <poyea@pm.me>"]
 description = "Not a poodle, but a word-guessing game from your terminal"
@@ -27,4 +27,5 @@ criterion = { version = "0.3", features = ["html_reports"] }
 
 [[bench]]
 name = "poodle_benchmark"
+path = "benches/poodle_benchmark.rs"
 harness = false
