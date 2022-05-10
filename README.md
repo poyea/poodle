@@ -11,12 +11,13 @@ Not a 🐩 (Poodle), but a word-guessing game from your terminal. 🟩⬛🟩�
 ## How to use it
 
 #### Install Poodle 🐩
-```sh
+```console
 $ cargo install poodle    # install from crates.io!
 ```
 
 #### Guess today's riddle
-```bash
+```console
+$ export POODLE_LOGS="/tmp/poodle/logs.json"    # set logs file optionally
 $ poodle start
 ```
 <details>
@@ -25,12 +26,12 @@ $ poodle start
 </details>
 
 #### Display full logs
-```bash
+```console
 $ poodle log
 ```
 
 #### Get help message
-```bash
+```console
 $ poodle --help
 ```
 

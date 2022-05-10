@@ -7,7 +7,6 @@ use std::{
 };
 
 static LOGS_TEMPLATE: &'static str = include_str!("./assets/logs.json");
-static LOGS_LOCATION: &'static str = "/tmp/poodle/logs.json";
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Pair {
@@ -23,20 +22,21 @@ pub struct Logs {
 
 impl Logs {
     fn get_logs() -> (Logs, String) {
-        let location = match env::var("LOGS") {
-            Ok(val) => val,
-            Err(_) => LOGS_LOCATION.to_string(),
+        let location = match env::var("POODLE_LOGS") {
+            Ok(val) => Path::new(&val).to_path_buf(),
+            Err(_) => Path::new(&env::temp_dir()).join("poodle").join("logs.json"),
         };
-        if Path::new(&location).is_file() {
+        let location_str = location.to_str().unwrap().to_string();
+        if location.is_file() {
             (
-                serde_json::from_str(&read_to_string(&location).unwrap()).unwrap(),
-                location,
+                serde_json::from_str(&read_to_string(&location_str).unwrap()).unwrap(),
+                location_str,
             )
         } else {
-            let path = Path::new(&location);
+            let path = Path::new(&location_str);
             let prefix = path.parent().unwrap();
             create_dir_all(prefix).unwrap();
-            (serde_json::from_str(LOGS_TEMPLATE).unwrap(), location)
+            (serde_json::from_str(LOGS_TEMPLATE).unwrap(), location_str)
         }
     }
 
