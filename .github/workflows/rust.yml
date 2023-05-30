@@ -13,7 +13,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Run tests
       run: cargo test --verbose --all --release
   release_build:
@@ -31,13 +31,13 @@ jobs:
             target: x86_64-pc-windows-msvc
             exe: poodle.exe
     steps:
-    - uses: actions/checkout@v2
-    - uses: Swatinem/rust-cache@v1
+    - uses: actions/checkout@v3
+    - uses: Swatinem/rust-cache@v2
     - name: Test
       run: cargo test --verbose --all --release
     - name: Build
       run: cargo build --verbose --all --release
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: poodle-${{ matrix.target }}
         path: target/release/${{ matrix.exe }}
