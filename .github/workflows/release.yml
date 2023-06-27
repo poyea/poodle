@@ -37,7 +37,7 @@ jobs:
             target: x86_64-pc-windows-msvc
             exe: poodle.exe
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
@@ -50,12 +50,12 @@ jobs:
       - name: Build
         run: cross build --release --target ${{ matrix.target }} --verbose --all
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: poodle-${{ matrix.target }}
           path: target/${{ matrix.target }}/release/${{ matrix.exe }}
       - name: Zip Release
-        uses: TheDoctor0/zip-release@0.6.1
+        uses: TheDoctor0/zip-release@0.7.1
         with:
           type: zip
           filename: poodle-${{ matrix.target }}.zip
@@ -72,7 +72,7 @@ jobs:
     name: Upload to crates.io
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
