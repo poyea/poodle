@@ -129,6 +129,28 @@ impl DayState {
     }
 }
 
+impl DayState {
+    pub fn display_box(&self) -> String {
+        let mut result = String::new();
+        result.push_str("\n╭────────────────────────────╮\n");
+        result.push_str(&format!(
+            "│ Poodle {}   {}/{}  │\n",
+            self.date,
+            self.total_guess - self.remaining_guess,
+            self.total_guess
+        ));
+        result.push_str("├────────────────────────────┤\n");
+        for attempt in &self.stat.attempts {
+            result.push_str(&format!(
+                "│         {}         │\n",
+                attempt.to_string().trim()
+            ));
+        }
+        result.push_str("╰────────────────────────────╯\n");
+        result
+    }
+}
+
 impl fmt::Display for DayState {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "\n<>==========<>\n")?;

@@ -60,7 +60,7 @@ impl Keyboard {
                 .chain(iter::repeat(&'\0')),
         ) {
             for row in self.keys.iter_mut() {
-                for mut key in row.iter_mut() {
+                for key in row.iter_mut() {
                     if key.data == *guess_char {
                         // found the character
                         key.used = match attempt {

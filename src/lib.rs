@@ -24,10 +24,12 @@ fn start(today: String) {
 
     let stdin = io::stdin();
 
+    print!("{}", keyboard);
+    io::stdout().flush().unwrap();
+
     while !today_state.finished() {
         let ask_guess = || -> String {
             let mut buffer = String::new();
-            print!("{}", keyboard);
             print!("Your guess ({}) → ", today_state.remaining_guess);
             io::stdout().flush().unwrap();
             stdin.read_line(&mut buffer).unwrap();
@@ -50,10 +52,11 @@ fn start(today: String) {
         keyboard.set_key_with_guess(&today_state, &buffer);
 
         print!("\t\t{}", attempt_fmt);
+        print!("{}", keyboard);
         io::stdout().flush().unwrap();
     }
 
-    println!("{}", &today_state);
+    print!("{}", today_state.display_box());
     Logs::save_log(today_state);
 }
 
