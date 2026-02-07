@@ -37,7 +37,7 @@ jobs:
             target: x86_64-pc-windows-msvc
             exe: poodle.exe
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
@@ -50,7 +50,7 @@ jobs:
       - name: Build
         run: cross build --release --target ${{ matrix.target }} --verbose --all
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: poodle-${{ matrix.target }}
           path: target/${{ matrix.target }}/release/${{ matrix.exe }}
@@ -72,11 +72,11 @@ jobs:
     name: Upload to crates.io
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           override: true
-      - uses: katyo/publish-crates@v1
+      - uses: katyo/publish-crates@v2
         with:
             registry-token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
